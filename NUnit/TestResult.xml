@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!--This file represents the results of running a test suite-->
+<test-results name="C:\Thoris\Projetos\AcademiaCalasans\build\qa\0.1.88.0\source\Academia.Tests\bin\Release\Academia.Tests.dll" total="86" errors="2" failures="0" not-run="32" inconclusive="0" ignored="32" skipped="0" invalid="0" date="2015-01-18" time="22:20:10">
+  <environment nunit-version="2.6.3.13283" clr-version="2.0.50727.8009" os-version="Microsoft Windows NT 6.2.9200.0" platform="Win32NT" cwd="C:\Thoris\Projetos\AcademiaCalasans\trunk\Tools\NUnit" machine-name="THORIS-LPC" user="Thoris" user-domain="THORIS-LPC" />
+  <culture-info current-culture="pt-BR" current-uiculture="pt-BR" />
+  <test-suite type="Assembly" name="C:\Thoris\Projetos\AcademiaCalasans\build\qa\0.1.88.0\source\Academia.Tests\bin\Release\Academia.Tests.dll" executed="True" result="Failure" success="False" time="8.707" asserts="0">
+    <results>
+      <test-suite type="Namespace" name="Academia" executed="True" result="Failure" success="False" time="8.701" asserts="0">
+        <results>
+          <test-suite type="Namespace" name="Tests" executed="True" result="Failure" success="False" time="8.701" asserts="0">
+            <results>
+              <test-suite type="TestFixture" name="ConfigurationTests" executed="True" result="Inconclusive" success="False" time="0.004" asserts="0" />
+              <test-suite type="Namespace" name="Integration" executed="True" result="Failure" success="False" time="8.605" asserts="0">
+                <results>
+                  <test-suite type="Namespace" name="Controllers" executed="True" result="Failure" success="False" time="8.605" asserts="0">
+                    <results>
+                      <test-suite type="Namespace" name="Compras" executed="True" result="Success" success="True" time="6.913" asserts="0">
+                        <results>
+                          <test-suite type="TestFixture" name="CompraMaterialControllerTests" executed="True" result="Success" success="True" time="6.817" asserts="0">
+                            <results>
+                              <test-case name="Academia.Tests.Integration.Controllers.Compras.CompraMaterialControllerTests.TestCreate" executed="False" result="Ignored">
+                                <reason>
+                                  <message><![CDATA[]]></message>
+                                </reason>
+                              </test-case>
+                              <test-case name="Academia.Tests.Integration.Controllers.Compras.CompraMaterialControllerTests.TestDelete" executed="True" result="Success" success="True" time="0.246" asserts="4" />
+                              <test-case name="Academia.Tests.Integration.Controllers.Compras.CompraMaterialControllerTests.TestDetails" executed="True" result="Success" success="True" time="0.027" asserts="5" />
+                              <test-case name="Academia.Tests.Integration.Controllers.Compras.CompraMaterialControllerTests.TestEdit" executed="False" result="Ignored">
+                                <reason>
+                                  <message><![CDATA[]]></message>
+                                </reason>
+                              </test-case>
+                              <test-case name="Academia.Tests.Integration.Controllers.Compras.CompraMaterialControllerTests.TestIndex" executed="False" result="Ignored">
+                                <reason>
+                                  <message><![CDATA[]]></message>
+                                </reason>
+                              </test-case>
+                            </results>
+                          </test-suite>
+                          <test-suite type="TestFixture" name="CompraProdutoControllerTests" executed="True" result="Success" success="True" time="0.093" asserts="0">
+                            <results>
+                              <test-case name="Academia.Tests.Integration.Controllers.Compras.CompraProdutoControllerTests.TestCreate" executed="False" result="Ignored">
+                                <reason>
+                                  <message><![CDATA[]]></message>
+                                </reason>
+                              </test-case>
+                              <test-case name="Academia.Tests.Integration.Controllers.Compras.CompraProdutoControllerTests.TestDelete" executed="True" result="Success" success="True" time="0.049" asserts="4" />
+                              <test-case name="Academia.Tests.Integration.Controllers.Compras.CompraProdutoControllerTests.TestDetails" executed="True" result="Success" success="True" time="0.033" asserts="5" />
+                              <test-case name="Academia.Tests.Integration.Controllers.Compras.CompraProdutoControllerTests.TestEdit" executed="False" result="Ignored">
+                                <reason>
+                                  <message><![CDATA[]]></message>
+                                </reason>
+                              </test-case>
+                              <test-case name="Academia.Tests.Integration.Controllers.Compras.CompraProdutoControllerTests.TestIndex" executed="False" result="Ignored">
+                                <reason>
+                                  <message><![CDATA[]]></message>
+                                </reason>
+                              </test-case>
+                            </results>
+                          </test-suite>
+                        </results>
+                      </test-suite>
+                      <test-suite type="Namespace" name="ContasPagar" executed="True" result="Success" success="True" time="0.203" asserts="0">
+                        <results>
+                          <test-suite type="TestFixture" name="FuncionarioPagamentoControllerTests" executed="True" result="Success" success="True" time="0.101" asserts="0">
+                            <results>
+                              <test-case name="Academia.Tests.Integration.Controllers.ContasPagar.FuncionarioPagamentoControllerTests.TestCreate" executed="False" result="Ignored">
+                                <reason>
+                                  <message><![CDATA[]]></message>
+                                </reason>
+                              </test-case>
+                              <test-case name="Academia.Tests.Integration.Controllers.ContasPagar.FuncionarioPagamentoControllerTests.TestDelete" executed="True" result="Success" success="True" time="0.061" asserts="4" />
+                              <test-case name="Academia.Tests.Integration.Controllers.ContasPagar.FuncionarioPagamentoControllerTests.TestDetails" executed="True" result="Success" success="True" time="0.030" asserts="5" />
+                              <test-case name="Academia.Tests.Integration.Controllers.ContasPagar.FuncionarioPagamentoControllerTests.TestEdit" executed="False" result="Ignored">
+                                <reason>
+                                  <message><![CDATA[]]></message>
+                                </reason>
+                              </test-case>
+                              <test-case name="Academia.Tests.Integration.Controllers.ContasPagar.FuncionarioPagamentoControllerTests.TestIndex" executed="False" result="Ignored">
+                                <reason>
+                                  <message><![CDATA[]]></message>
+                                </reason>
+                              </test-case>
+                            </results>
+                          </test-suite>
+                          <test-suite type="TestFixture" name="ProfessorPagamentoControllerTests" executed="True" result="Success" success="True" time="0.099" asserts="0">
+                            <results>
+                              <test-case name="Academia.Tests.Integration.Controllers.ContasPagar.ProfessorPagamentoControllerTests.TestCreate" executed="False" result="Ignored">
+                                <reason>
+                                  <message><![CDATA[]]></message>
+                                </reason>
+                              </test-case>
+                              <test-case name="Academia.Tests.Integration.Controllers.ContasPagar.ProfessorPagamentoControllerTests.TestDelete" executed="True" result="Success" success="True" time="0.062" asserts="4" />
+                              <test-case name="Academia.Tests.Integration.Controllers.ContasPagar.ProfessorPagamentoControllerTests.TestDetails" executed="True" result="Success" success="True" time="0.028" asserts="5" />
+                              <test-case name="Academia.Tests.Integration.Controllers.ContasPagar.ProfessorPagamentoControllerTests.TestEdit" executed="False" result="Ignored">
+                                <reason>
+                                  <message><![CDATA[]]></message>
+                                </reason>
+                              </test-case>
+                              <test-case name="Academia.Tests.Integration.Controllers.ContasPagar.ProfessorPagamentoControllerTests.TestIndex" executed="False" result="Ignored">
+                                <reason>
+                                  <message><![CDATA[]]></message>
+                                </reason>
+                              </test-case>
+                            </results>
+                          </test-suite>
+                        </results>
+                      </test-suite>
+                      <test-suite type="Namespace" name="ContasReceber" executed="True" result="Failure" success="False" time="0.098" asserts="0">
+                        <results>
+                          <test-suite type="TestFixture" name="AlunoPagamentoControllerTests" executed="True" result="Failure" success="False" time="0.098" asserts="0">
+                            <results>
+                              <test-case name="Academia.Tests.Integration.Controllers.ContasReceber.AlunoPagamentoControllerTests.TestCreate" executed="False" result="Ignored">
+                                <reason>
+                                  <message><![CDATA[]]></message>
+                                </reason>
+                              </test-case>
+                              <test-case name="Academia.Tests.Integration.Controllers.ContasReceber.AlunoPagamentoControllerTests.TestDelete" executed="True" result="Error" success="False" time="0.018" asserts="0">
+                                <failure>
+                                  <message><![CDATA[System.Data.Entity.Validation.DbEntityValidationException : Validation failed for one or more entities. See 'EntityValidationErrors' property for more details.]]></message>
+                                  <stack-trace><![CDATA[em Academia.Dao.EntityFramework.UnitOfWork.Save() na c:\Thoris\Projetos\AcademiaCalasans\build\qa\0.1.88.0\source\Academia.Dao.EF\UnitOfWork.cs:linha 248
+em Academia.Tests.Integration.Controllers.DatabaseManagerBaseControllerTests`1.CreateRowDependencies(AuditModel[] dependencies) na c:\Thoris\Projetos\AcademiaCalasans\build\qa\0.1.88.0\source\Academia.Tests\Integration\Controllers\DatabaseManagerBaseControllerTests.cs:linha 82
+em Academia.Tests.Integration.Controllers.DatabaseManagerBaseControllerTests`1.PrepareToTestDelete(AuditModel[] dependencies) na c:\Thoris\Projetos\AcademiaCalasans\build\qa\0.1.88.0\source\Academia.Tests\Integration\Controllers\DatabaseManagerBaseControllerTests.cs:linha 425
+em Academia.Tests.Integration.Controllers.ContasReceber.AlunoPagamentoControllerTests.TestDelete() na c:\Thoris\Projetos\AcademiaCalasans\build\qa\0.1.88.0\source\Academia.Tests\Integration\Controllers\ContasReceber\AlunoPagamentoControllerTests.cs:linha 192
+]]></stack-trace>
+                                </failure>
+                              </test-case>
+                              <test-case name="Academia.Tests.Integration.Controllers.ContasReceber.AlunoPagamentoControllerTests.TestDetails" executed="True" result="Error" success="False" time="0.010" asserts="0">
+                                <failure>
+                                  <message><![CDATA[System.Data.Entity.Validation.DbEntityValidationException : Validation failed for one or more entities. See 'EntityValidationErrors' property for more details.]]></message>
+                                  <stack-trace><![CDATA[em Academia.Dao.EntityFramework.UnitOfWork.Save() na c:\Thoris\Projetos\AcademiaCalasans\build\qa\0.1.88.0\source\Academia.Dao.EF\UnitOfWork.cs:linha 248
+em Academia.Tests.Integration.Controllers.DatabaseManagerBaseControllerTests`1.CreateRowDependencies(AuditModel[] dependencies) na c:\Thoris\Projetos\AcademiaCalasans\build\qa\0.1.88.0\source\Academia.Tests\Integration\Controllers\DatabaseManagerBaseControllerTests.cs:linha 82
+em Academia.Tests.Integration.Controllers.DatabaseManagerBaseControllerTests`1.PrepareToTestDetails(AuditModel[] dependencies) na c:\Thoris\Projetos\AcademiaCalasans\build\qa\0.1.88.0\source\Academia.Tests\Integration\Controllers\DatabaseManagerBaseControllerTests.cs:linha 470
+em Academia.Tests.Integration.Controllers.ContasReceber.AlunoPagamentoControllerTests.TestDetails() na c:\Thoris\Projetos\AcademiaCalasans\build\qa\0.1.88.0\source\Academia.Tests\Integration\Controllers\ContasReceber\AlunoPagamentoControllerTests.cs:linha 212
+]]></stack-trace>
+                                </failure>
+                              </test-case>
+                              <test-case name="Academia.Tests.Integration.Controllers.ContasReceber.AlunoPagamentoControllerTests.TestEdit" executed="False" result="Ignored">
+                                <reason>
+                                  <message><![CDATA[]]></message>
+                                </reason>
+                              </test-case>
+                              <test-case name="Academia.Tests.Integration.Controllers.ContasReceber.AlunoPagamentoControllerTests.TestIndex" executed="False" result="Ignored">
+                                <reason>
+                                  <message><![CDATA[]]></message>
+                                </reason>
+                              </test-case>
+                            </results>
+                          </test-suite>
+                        </results>
+                      </test-suite>
+                      <test-suite type="Namespace" name="DadosBasicos" executed="True" result="Success" success="True" time="0.232" asserts="0">
+                        <results>
+                          <test-suite type="TestFixture" name="LocalControllerTests" executed="True" result="Success" success="True" time="0.119" asserts="0">
+                            <results>
+                              <test-case name="Academia.Tests.Integration.Controllers.DadosBasicos.LocalControllerTests.TestCreate" executed="True" result="Success" success="True" time="0.031" asserts="4" />
+                              <test-case name="Academia.Tests.Integration.Controllers.DadosBasicos.LocalControllerTests.TestDelete" executed="True" result="Success" success="True" time="0.016" asserts="4" />
+                              <test-case name="Academia.Tests.Integration.Controllers.DadosBasicos.LocalControllerTests.TestDetails" executed="True" result="Success" success="True" time="0.010" asserts="5" />
+                              <test-case name="Academia.Tests.Integration.Controllers.DadosBasicos.LocalControllerTests.TestEdit" executed="True" result="Success" success="True" time="0.029" asserts="5" />
+                              <test-case name="Academia.Tests.Integration.Controllers.DadosBasicos.LocalControllerTests.TestIndex" executed="True" result="Success" success="True" time="0.019" asserts="27" />
+                            </results>
+                          </test-suite>
+                          <test-suite type="TestFixture" name="ModalidadeControllerTests" executed="True" result="Success" success="True" time="0.111" asserts="0">
+                            <results>
+                              <test-case name="Academia.Tests.Integration.Controllers.DadosBasicos.ModalidadeControllerTests.TestCreate" executed="True" result="Success" success="True" time="0.040" asserts="4" />
+                              <test-case name="Academia.Tests.Integration.Controllers.DadosBasicos.ModalidadeControllerTests.TestDelete" executed="True" result="Success" success="True" time="0.013" asserts="4" />
+                              <test-case name="Academia.Tests.Integration.Controllers.DadosBasicos.ModalidadeControllerTests.TestDetails" executed="True" result="Success" success="True" time="0.010" asserts="5" />
+                              <test-case name="Academia.Tests.Integration.Controllers.DadosBasicos.ModalidadeControllerTests.TestEdit" executed="True" result="Success" success="True" time="0.018" asserts="5" />
+                              <test-case name="Academia.Tests.Integration.Controllers.DadosBasicos.ModalidadeControllerTests.TestIndex" executed="True" result="Success" success="True" time="0.020" asserts="72" />
+                            </results>
+                          </test-suite>
+                        </results>
+                      </test-suite>
+                      <test-suite type="Namespace" name="Financeiro" executed="True" result="Success" success="True" time="0.254" asserts="0">
+                        <results>
+                          <test-suite type="TestFixture" name="FluxoCaixaControllerTests" executed="True" result="Success" success="True" time="0.057" asserts="0">
+                            <results>
+                              <test-case name="Academia.Tests.Integration.Controllers.Financeiro.FluxoCaixaControllerTests.TestCreate" executed="False" result="Ignored">
+                                <reason>
+                                  <message><![CDATA[]]></message>
+                                </reason>
+                              </test-case>
+                              <test-case name="Academia.Tests.Integration.Controllers.Financeiro.FluxoCaixaControllerTests.TestDelete" executed="True" result="Success" success="True" time="0.030" asserts="4" />
+                              <test-case name="Academia.Tests.Integration.Controllers.Financeiro.FluxoCaixaControllerTests.TestDetails" executed="True" result="Success" success="True" time="0.012" asserts="5" />
+                              <test-case name="Academia.Tests.Integration.Controllers.Financeiro.FluxoCaixaControllerTests.TestEdit" executed="False" result="Ignored">
+                                <reason>
+                                  <message><![CDATA[]]></message>
+                                </reason>
+                              </test-case>
+                              <test-case name="Academia.Tests.Integration.Controllers.Financeiro.FluxoCaixaControllerTests.TestIndex" executed="False" result="Ignored">
+                                <reason>
+                                  <message><![CDATA[]]></message>
+                                </reason>
+                              </test-case>
+                            </results>
+                          </test-suite>
+                          <test-suite type="TestFixture" name="FluxoCategoriaControllerTests" executed="True" result="Success" success="True" time="0.084" asserts="0">
+                            <results>
+                              <test-case name="Academia.Tests.Integration.Controllers.Financeiro.FluxoCategoriaControllerTests.TestCreate" executed="True" result="Success" success="True" time="0.018" asserts="4" />
+                              <test-case name="Academia.Tests.Integration.Controllers.Financeiro.FluxoCategoriaControllerTests.TestDelete" executed="True" result="Success" success="True" time="0.011" asserts="4" />
+                              <test-case name="Academia.Tests.Integration.Controllers.Financeiro.FluxoCategoriaControllerTests.TestDetails" executed="True" result="Success" success="True" time="0.010" asserts="5" />
+                              <test-case name="Academia.Tests.Integration.Controllers.Financeiro.FluxoCategoriaControllerTests.TestEdit" executed="True" result="Success" success="True" time="0.016" asserts="5" />
+                              <test-case name="Academia.Tests.Integration.Controllers.Financeiro.FluxoCategoriaControllerTests.TestIndex" executed="True" result="Success" success="True" time="0.019" asserts="92" />
+                            </results>
+                          </test-suite>
+                          <test-suite type="TestFixture" name="PacoteControllerTests" executed="True" result="Success" success="True" time="0.110" asserts="0">
+                            <results>
+                              <test-case name="Academia.Tests.Integration.Controllers.Financeiro.PacoteControllerTests.TestCreate" executed="True" result="Success" success="True" time="0.036" asserts="4" />
+                              <test-case name="Academia.Tests.Integration.Controllers.Financeiro.PacoteControllerTests.TestDelete" executed="True" result="Success" success="True" time="0.013" asserts="4" />
+                              <test-case name="Academia.Tests.Integration.Controllers.Financeiro.PacoteControllerTests.TestDetails" executed="True" result="Success" success="True" time="0.015" asserts="5" />
+                              <test-case name="Academia.Tests.Integration.Controllers.Financeiro.PacoteControllerTests.TestEdit" executed="True" result="Success" success="True" time="0.019" asserts="5" />
+                              <test-case name="Academia.Tests.Integration.Controllers.Financeiro.PacoteControllerTests.TestIndex" executed="True" result="Success" success="True" time="0.017" asserts="27" />
+                            </results>
+                          </test-suite>
+                        </results>
+                      </test-suite>
+                      <test-suite type="TestFixture" name="HomeControllerTests" executed="True" result="Success" success="True" time="0.050" asserts="0">
+                        <results>
+                          <test-case name="Academia.Tests.Integration.Controllers.HomeControllerTests.TestAbout" executed="False" result="Ignored">
+                            <reason>
+                              <message><![CDATA[]]></message>
+                            </reason>
+                          </test-case>
+                          <test-case name="Academia.Tests.Integration.Controllers.HomeControllerTests.TestContact" executed="True" result="Success" success="True" time="0.002" asserts="1" />
+                          <test-case name="Academia.Tests.Integration.Controllers.HomeControllerTests.TestIndex" executed="True" result="Success" success="True" time="0.047" asserts="6" />
+                        </results>
+                      </test-suite>
+                      <test-suite type="Namespace" name="Marketing" executed="True" result="Success" success="True" time="0.227" asserts="0">
+                        <results>
+                          <test-suite type="TestFixture" name="EventoControllerTests" executed="True" result="Success" success="True" time="0.045" asserts="0">
+                            <results>
+                              <test-case name="Academia.Tests.Integration.Controllers.Marketing.EventoControllerTests.TestCreate" executed="False" result="Ignored">
+                                <reason>
+                                  <message><![CDATA[]]></message>
+                                </reason>
+                              </test-case>
+                              <test-case name="Academia.Tests.Integration.Controllers.Marketing.EventoControllerTests.TestDelete" executed="True" result="Success" success="True" time="0.024" asserts="4" />
+                              <test-case name="Academia.Tests.Integration.Controllers.Marketing.EventoControllerTests.TestDetails" executed="True" result="Success" success="True" time="0.010" asserts="5" />
+                              <test-case name="Academia.Tests.Integration.Controllers.Marketing.EventoControllerTests.TestEdit" executed="False" result="Ignored">
+                                <reason>
+                                  <message><![CDATA[]]></message>
+                                </reason>
+                              </test-case>
+                              <test-case name="Academia.Tests.Integration.Controllers.Marketing.EventoControllerTests.TestIndex" executed="False" result="Ignored">
+                                <reason>
+                                  <message><![CDATA[]]></message>
+                                </reason>
+                              </test-case>
+                            </results>
+                          </test-suite>
+                          <test-suite type="TestFixture" name="PacoteControllerTests" executed="True" result="Success" success="True" time="0.071" asserts="0">
+                            <results>
+                              <test-case name="Academia.Tests.Integration.Controllers.Marketing.PacoteControllerTests.TestCreate" executed="True" result="Success" success="True" time="0.010" asserts="4" />
+                              <test-case name="Academia.Tests.Integration.Controllers.Marketing.PacoteControllerTests.TestDelete" executed="True" result="Success" success="True" time="0.011" asserts="4" />
+                              <test-case name="Academia.Tests.Integration.Controllers.Marketing.PacoteControllerTests.TestDetails" executed="True" result="Success" success="True" time="0.010" asserts="5" />
+                              <test-case name="Academia.Tests.Integration.Controllers.Marketing.PacoteControllerTests.TestEdit" executed="True" result="Success" success="True" time="0.013" asserts="5" />
+                              <test-case name="Academia.Tests.Integration.Controllers.Marketing.PacoteControllerTests.TestIndex" executed="True" result="Success" success="True" time="0.017" asserts="27" />
+                            </results>
+                          </test-suite>
+                          <test-suite type="TestFixture" name="ParceriaControllerTests" executed="True" result="Success" success="True" time="0.105" asserts="0">
+                            <results>
+                              <test-case name="Academia.Tests.Integration.Controllers.Marketing.ParceriaControllerTests.TestCreate" executed="True" result="Success" success="True" time="0.030" asserts="4" />
+                              <test-case name="Academia.Tests.Integration.Controllers.Marketing.ParceriaControllerTests.TestDelete" executed="True" result="Success" success="True" time="0.012" asserts="4" />
+                              <test-case name="Academia.Tests.Integration.Controllers.Marketing.ParceriaControllerTests.TestDetails" executed="True" result="Success" success="True" time="0.010" asserts="5" />
+                              <test-case name="Academia.Tests.Integration.Controllers.Marketing.ParceriaControllerTests.TestEdit" executed="True" result="Success" success="True" time="0.019" asserts="5" />
+                              <test-case name="Academia.Tests.Integration.Controllers.Marketing.ParceriaControllerTests.TestIndex" executed="True" result="Success" success="True" time="0.019" asserts="52" />
+                            </results>
+                          </test-suite>
+                        </results>
+                      </test-suite>
+                      <test-suite type="Namespace" name="Materiais" executed="True" result="Success" success="True" time="0.160" asserts="0">
+                        <results>
+                          <test-suite type="TestFixture" name="MaterialControllerTests" executed="True" result="Success" success="True" time="0.083" asserts="0">
+                            <results>
+                              <test-case name="Academia.Tests.Integration.Controllers.Materiais.MaterialControllerTests.TestCreate" executed="True" result="Success" success="True" time="0.012" asserts="4" />
+                              <test-case name="Academia.Tests.Integration.Controllers.Materiais.MaterialControllerTests.TestDelete" executed="True" result="Success" success="True" time="0.016" asserts="4" />
+                              <test-case name="Academia.Tests.Integration.Controllers.Materiais.MaterialControllerTests.TestDetails" executed="True" result="Success" success="True" time="0.012" asserts="5" />
+                              <test-case name="Academia.Tests.Integration.Controllers.Materiais.MaterialControllerTests.TestEdit" executed="True" result="Success" success="True" time="0.017" asserts="5" />
+                              <test-case name="Academia.Tests.Integration.Controllers.Materiais.MaterialControllerTests.TestIndex" executed="True" result="Success" success="True" time="0.016" asserts="50" />
+                            </results>
+                          </test-suite>
+                          <test-suite type="TestFixture" name="ProdutoControllerTests" executed="True" result="Success" success="True" time="0.074" asserts="0">
+                            <results>
+                              <test-case name="Academia.Tests.Integration.Controllers.Materiais.ProdutoControllerTests.TestCreate" executed="True" result="Success" success="True" time="0.012" asserts="4" />
+                              <test-case name="Academia.Tests.Integration.Controllers.Materiais.ProdutoControllerTests.TestDelete" executed="True" result="Success" success="True" time="0.010" asserts="4" />
+                              <test-case name="Academia.Tests.Integration.Controllers.Materiais.ProdutoControllerTests.TestDetails" executed="True" result="Success" success="True" time="0.009" asserts="5" />
+                              <test-case name="Academia.Tests.Integration.Controllers.Materiais.ProdutoControllerTests.TestEdit" executed="True" result="Success" success="True" time="0.016" asserts="5" />
+                              <test-case name="Academia.Tests.Integration.Controllers.Materiais.ProdutoControllerTests.TestIndex" executed="True" result="Success" success="True" time="0.016" asserts="36" />
+                            </results>
+                          </test-suite>
+                        </results>
+                      </test-suite>
+                      <test-suite type="Namespace" name="Operacional" executed="True" result="Success" success="True" time="0.053" asserts="0">
+                        <results>
+                          <test-suite type="TestFixture" name="TurmaControllerTests" executed="True" result="Success" success="True" time="0.052" asserts="0">
+                            <results>
+                              <test-case name="Academia.Tests.Integration.Controllers.Operacional.TurmaControllerTests.TestCreate" executed="False" result="Ignored">
+                                <reason>
+                                  <message><![CDATA[]]></message>
+                                </reason>
+                              </test-case>
+                              <test-case name="Academia.Tests.Integration.Controllers.Operacional.TurmaControllerTests.TestDelete" executed="True" result="Success" success="True" time="0.024" asserts="4" />
+                              <test-case name="Academia.Tests.Integration.Controllers.Operacional.TurmaControllerTests.TestDetails" executed="True" result="Success" success="True" time="0.018" asserts="5" />
+                              <test-case name="Academia.Tests.Integration.Controllers.Operacional.TurmaControllerTests.TestEdit" executed="False" result="Ignored">
+                                <reason>
+                                  <message><![CDATA[]]></message>
+                                </reason>
+                              </test-case>
+                              <test-case name="Academia.Tests.Integration.Controllers.Operacional.TurmaControllerTests.TestIndex" executed="False" result="Ignored">
+                                <reason>
+                                  <message><![CDATA[]]></message>
+                                </reason>
+                              </test-case>
+                            </results>
+                          </test-suite>
+                        </results>
+                      </test-suite>
+                      <test-suite type="Namespace" name="RH" executed="True" result="Success" success="True" time="0.318" asserts="0">
+                        <results>
+                          <test-suite type="TestFixture" name="AlunoControllerTests" executed="True" result="Success" success="True" time="0.227" asserts="0">
+                            <results>
+                              <test-case name="Academia.Tests.Integration.Controllers.RH.AlunoControllerTests.TestCreate" executed="False" result="Ignored">
+                                <reason>
+                                  <message><![CDATA[]]></message>
+                                </reason>
+                              </test-case>
+                              <test-case name="Academia.Tests.Integration.Controllers.RH.AlunoControllerTests.TestDelete" executed="False" result="Ignored">
+                                <reason>
+                                  <message><![CDATA[]]></message>
+                                </reason>
+                              </test-case>
+                              <test-case name="Academia.Tests.Integration.Controllers.RH.AlunoControllerTests.TestDetails" executed="True" result="Success" success="True" time="0.133" asserts="5" />
+                              <test-case name="Academia.Tests.Integration.Controllers.RH.AlunoControllerTests.TestEdit" executed="False" result="Ignored">
+                                <reason>
+                                  <message><![CDATA[]]></message>
+                                </reason>
+                              </test-case>
+                              <test-case name="Academia.Tests.Integration.Controllers.RH.AlunoControllerTests.TestIndex" executed="True" result="Success" success="True" time="0.084" asserts="63" />
+                            </results>
+                          </test-suite>
+                          <test-suite type="TestFixture" name="CargoControllerTests" executed="True" result="Success" success="True" time="0.090" asserts="0">
+                            <results>
+                              <test-case name="Academia.Tests.Integration.Controllers.RH.CargoControllerTests.TestCreate" executed="True" result="Success" success="True" time="0.022" asserts="4" />
+                              <test-case name="Academia.Tests.Integration.Controllers.RH.CargoControllerTests.TestDelete" executed="True" result="Success" success="True" time="0.011" asserts="4" />
+                              <test-case name="Academia.Tests.Integration.Controllers.RH.CargoControllerTests.TestDetails" executed="True" result="Success" success="True" time="0.010" asserts="5" />
+                              <test-case name="Academia.Tests.Integration.Controllers.RH.CargoControllerTests.TestEdit" executed="True" result="Success" success="True" time="0.016" asserts="5" />
+                              <test-case name="Academia.Tests.Integration.Controllers.RH.CargoControllerTests.TestIndex" executed="True" result="Success" success="True" time="0.020" asserts="22" />
+                            </results>
+                          </test-suite>
+                        </results>
+                      </test-suite>
+                      <test-suite type="Namespace" name="Vendas" executed="True" result="Success" success="True" time="0.066" asserts="0">
+                        <results>
+                          <test-suite type="TestFixture" name="VendaProdutoControllerTests" executed="True" result="Success" success="True" time="0.065" asserts="0">
+                            <results>
+                              <test-case name="Academia.Tests.Integration.Controllers.Vendas.VendaProdutoControllerTests.TestCreate" executed="False" result="Ignored">
+                                <reason>
+                                  <message><![CDATA[]]></message>
+                                </reason>
+                              </test-case>
+                              <test-case name="Academia.Tests.Integration.Controllers.Vendas.VendaProdutoControllerTests.TestDelete" executed="True" result="Success" success="True" time="0.029" asserts="4" />
+                              <test-case name="Academia.Tests.Integration.Controllers.Vendas.VendaProdutoControllerTests.TestDetails" executed="True" result="Success" success="True" time="0.026" asserts="5" />
+                              <test-case name="Academia.Tests.Integration.Controllers.Vendas.VendaProdutoControllerTests.TestEdit" executed="False" result="Ignored">
+                                <reason>
+                                  <message><![CDATA[]]></message>
+                                </reason>
+                              </test-case>
+                              <test-case name="Academia.Tests.Integration.Controllers.Vendas.VendaProdutoControllerTests.TestIndex" executed="False" result="Ignored">
+                                <reason>
+                                  <message><![CDATA[]]></message>
+                                </reason>
+                              </test-case>
+                            </results>
+                          </test-suite>
+                        </results>
+                      </test-suite>
+                    </results>
+                  </test-suite>
+                </results>
+              </test-suite>
+              <test-suite type="Namespace" name="Unit" executed="True" result="Success" success="True" time="0.068" asserts="0">
+                <results>
+                  <test-suite type="Namespace" name="BusinessTests" executed="True" result="Success" success="True" time="0.067" asserts="0">
+                    <results>
+                      <test-suite type="TestFixture" name="BaseBOTests" executed="True" result="Success" success="True" time="0.012" asserts="0">
+                        <results>
+                          <test-case name="Academia.Tests.Unit.BusinessTests.BaseBOTests.TestApplyAuditValuesInInsert" executed="True" result="Success" success="True" time="0.002" asserts="8" />
+                          <test-case name="Academia.Tests.Unit.BusinessTests.BaseBOTests.TestApplyAuditValuesInUpdate" executed="True" result="Success" success="True" time="0.009" asserts="8" />
+                        </results>
+                      </test-suite>
+                      <test-suite type="TestFixture" name="FluxoCaixaBOTests" executed="True" result="Success" success="True" time="0.054" asserts="0">
+                        <results>
+                          <test-case name="Academia.Tests.Unit.BusinessTests.FluxoCaixaBOTests.TestCalculatePagamento_1_Pagamento_Abaixo_Valor_Curso_Com_Desconto" executed="True" result="Success" success="True" time="0.005" asserts="2" />
+                          <test-case name="Academia.Tests.Unit.BusinessTests.FluxoCaixaBOTests.TestCalculatePagamento_1_Pagamento_Abaixo_Valor_Curso_Sem_Desconto" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                          <test-case name="Academia.Tests.Unit.BusinessTests.FluxoCaixaBOTests.TestCalculatePagamento_1_Pagamento_Acima_Valor_Curso_Com_Desconto" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                          <test-case name="Academia.Tests.Unit.BusinessTests.FluxoCaixaBOTests.TestCalculatePagamento_1_Pagamento_Acima_Valor_Curso_Sem_Desconto" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                          <test-case name="Academia.Tests.Unit.BusinessTests.FluxoCaixaBOTests.TestCalculatePagamento_1_Pagamento_Valor_Curso_Com_Desconto" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                          <test-case name="Academia.Tests.Unit.BusinessTests.FluxoCaixaBOTests.TestCalculatePagamento_1_Pagamento_Valor_Curso_Sem_Desconto" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+                          <test-case name="Academia.Tests.Unit.BusinessTests.FluxoCaixaBOTests.TestCalculatePagamento_2_Pagamento_Abaixo_Valor_Curso_Com_Desconto" executed="True" result="Success" success="True" time="0.001" asserts="4" />
+                          <test-case name="Academia.Tests.Unit.BusinessTests.FluxoCaixaBOTests.TestCalculatePagamento_2_Pagamento_Abaixo_Valor_Curso_Sem_Desconto" executed="True" result="Success" success="True" time="0.001" asserts="4" />
+                          <test-case name="Academia.Tests.Unit.BusinessTests.FluxoCaixaBOTests.TestCalculatePagamento_2_Pagamento_Acima_Valor_Curso_Com_Desconto" executed="True" result="Success" success="True" time="0.001" asserts="4" />
+                          <test-case name="Academia.Tests.Unit.BusinessTests.FluxoCaixaBOTests.TestCalculatePagamento_2_Pagamento_Acima_Valor_Curso_Sem_Desconto" executed="True" result="Success" success="True" time="0.001" asserts="4" />
+                          <test-case name="Academia.Tests.Unit.BusinessTests.FluxoCaixaBOTests.TestCalculatePagamento_2_Pagamento_Valor_Curso_Com_Desconto" executed="True" result="Success" success="True" time="0.001" asserts="4" />
+                          <test-case name="Academia.Tests.Unit.BusinessTests.FluxoCaixaBOTests.TestCalculatePagamento_2_Pagamento_Valor_Curso_Sem_Desconto" executed="True" result="Success" success="True" time="0.001" asserts="4" />
+                          <test-case name="Academia.Tests.Unit.BusinessTests.FluxoCaixaBOTests.TestFluxoCaixaMes" executed="True" result="Success" success="True" time="0.017" asserts="43" />
+                          <test-case name="Academia.Tests.Unit.BusinessTests.FluxoCaixaBOTests.TestPagamentoAlunosMes" executed="True" result="Success" success="True" time="0.000" asserts="0" />
+                          <test-case name="Academia.Tests.Unit.BusinessTests.FluxoCaixaBOTests.TestPagamentoProfessor_1_Pagamento_2_Modalidades_Diferentes" executed="True" result="Success" success="True" time="0.009" asserts="18" />
+                          <test-case name="Academia.Tests.Unit.BusinessTests.FluxoCaixaBOTests.TestPagamentoProfessor_2_Pagamento_1_Modalidade" executed="True" result="Success" success="True" time="0.001" asserts="10" />
+                          <test-case name="Academia.Tests.Unit.BusinessTests.FluxoCaixaBOTests.TestPagamentoProfessor_2_Pagamento_2_Modalidades_1_Repetida" executed="True" result="Success" success="True" time="0.002" asserts="22" />
+                          <test-case name="Academia.Tests.Unit.BusinessTests.FluxoCaixaBOTests.TestPagamentoProfessores" executed="False" result="Ignored">
+                            <reason>
+                              <message><![CDATA[]]></message>
+                            </reason>
+                          </test-case>
+                        </results>
+                      </test-suite>
+                    </results>
+                  </test-suite>
+                </results>
+              </test-suite>
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+    </results>
+  </test-suite>
+</test-results>

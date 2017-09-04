@@ -1,0 +1,29 @@
+﻿<!ENTITY % RuleTypes "(NumberConstant|StringConstant|Literal|BooleanConstant|CharConstant|Or|Sequence|Repeater|List|Ref|Id|BinaryOperator)">
+<!ELEMENT Grammar ((%RuleTypes;)+)>
+<!ELEMENT NumberConstant EMPTY>
+<!ELEMENT StringConstant EMPTY>
+<!ELEMENT Literal EMPTY>
+<!ELEMENT BooleanConstant EMPTY>
+<!ELEMENT CharConstant EMPTY>
+<!ELEMENT Or ((%RuleTypes;)+)>
+<!ELEMENT Sequence ((%RuleTypes;)+)>
+<!ELEMENT Repeater ((%RuleTypes;)+)>
+<!ELEMENT List ((%RuleTypes;)+)>
+<!ELEMENT Ref EMPTY>
+<!ELEMENT Id EMPTY>
+<!ELEMENT BinaryOperator (%RuleTypes;, %RuleTypes;)>
+
+<!ENTITY % DefaultAttr "name CDATA #IMPLIED optional CDATA #IMPLIED kill CDATA #IMPLIED peek CDATA #IMPLIED supressed CDATA #IMPLIED">
+<!ATTLIST Grammar %DefaultAttr; defaultrule CDATA #REQUIRED>
+<!ATTLIST NumberConstant %DefaultAttr;>
+<!ATTLIST StringConstant %DefaultAttr;>
+<!ATTLIST BooleanConstant %DefaultAttr;>
+<!ATTLIST CharConstant %DefaultAttr;>
+<!ATTLIST Literal pattern CDATA #REQUIRED %DefaultAttr;>
+<!ATTLIST Or %DefaultAttr;>
+<!ATTLIST Sequence %DefaultAttr; nospace CDATA #IMPLIED>
+<!ATTLIST Repeater %DefaultAttr; strict CDATA #IMPLIED>
+<!ATTLIST List delimiter CDATA #IMPLIED %DefaultAttr;>
+<!ATTLIST Ref rule CDATA #REQUIRED %DefaultAttr;>
+<!ATTLIST Id %DefaultAttr; excluded CDATA #IMPLIED>
+<!ATTLIST BinaryOperator %DefaultAttr;>

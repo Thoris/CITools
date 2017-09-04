@@ -1,0 +1,2 @@
+partcover.exe --target "..\\NUnit\nunit-console-x86.exe" --target-work-dir "..\\NUnit" --target-args "..\\..\\Academia.Tests\bin\Release\Academia.Tests.dll" --include "[*]Academia*" --exclude "[ISymWrapper*]*" --exclude "[nunit*]" --output "..\CoverageResult-tst_application.xml" --log 1000 
+pause

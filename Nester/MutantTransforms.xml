@@ -1,0 +1,107 @@
+﻿<TransformationScript>
+   <Transformation name ="ConstToken"
+                   transform ="/*const*/" label ="Eliminate const to make rewriter worke"/>
+   <TransformationGroup label = "Number Constants">
+        <Transformation name = "NumberLiteral" 
+            transform = "Nester.CodeInterface.InstrumentationCall.Constant(%original%, %serial%)"
+            label = "Number Constants"/>
+   </TransformationGroup>
+   <Transformation name = "BooleanLiteral" 
+       transform = "Nester.CodeInterface.InstrumentationCall.Constant(%original%, %serial%)"
+       label ="Boolean Constants"/>
+   <Transformation name = "StringLiteral" 
+       transform = "Nester.CodeInterface.InstrumentationCall.Constant(%original%, %serial%)"
+       label ="String Constants"/>
+   <Transformation name = "IfCondition" 
+       transform = "Nester.CodeInterface.InstrumentationCall.IfCondition(%original%, %serial%)"
+       label ="If Statement"/>
+   <Transformation name = "WhileCondition" 
+       transform = "Nester.CodeInterface.InstrumentationCall.WhileCondition(%original%, %serial%)"
+       label ="While Statement"/>
+   <Transformation name = "ForCondition" 
+       transform = "Nester.CodeInterface.InstrumentationCall.ForTerminationCondition(%original%, %serial%)"
+       label ="For Statement"/>
+   <Transformation name = "DoCondition"
+       transform = "Nester.CodeInterface.InstrumentationCall.DoCondition(%original%, %serial%)"
+       label ="Do ... While Statement"/>
+    <TransformationGroup label ="+,- operator">
+        <Transformation name ="AddativeOperator" 
+            transform = ', @"%original%",'
+            label ="+,- operator"/>
+        <Transformation name ="AddativeExpression"
+            transform ="Nester.CodeInterface.InstrumentationCall.BinaryOperator(%original%, %serial%)"
+            label ="+,- operator" />
+    </TransformationGroup>
+    <TransformationGroup label ="*, /, % operator">
+        <Transformation name ="MultiplicativeOperator" 
+            transform = ', @"%original%",'
+            label ="*, /, % operator"/>
+        <Transformation name ="MultiplicativeExpression"
+            transform ="Nester.CodeInterface.InstrumentationCall.BinaryOperator(%original%, %serial%)"
+            label ="*, /, % operator" />
+    </TransformationGroup>
+    <TransformationGroup label =">>, &lt;&lt; operator">
+        <Transformation name ="ShiftOperator" 
+            transform = ', @"%original%",'
+            label =">>, &lt;&lt; operator"/>
+        <Transformation name ="ShiftExpression"
+            transform ="Nester.CodeInterface.InstrumentationCall.BinaryOperator(%original%, %serial%)"
+            label =">>, &lt;&lt; operator" />
+    </TransformationGroup>
+    <TransformationGroup label =">, >=, &lt;, &lt;= operator">
+        <Transformation name ="RelationalOperator" 
+            transform = ', @"%original%",'
+            label =">, >=, &lt;, &lt;= operator"/>
+        <Transformation name ="RelationalExpression"
+            transform ="Nester.CodeInterface.InstrumentationCall.CompareOperator(%original%, %serial%)"
+            label =">, >=, &lt;, &lt;= operator" />
+    </TransformationGroup>
+    <TransformationGroup label ="==, != operator">
+        <Transformation name ="EqualityOperator" 
+            transform = ', @"%original%",'
+            label ="==, != operator"/>
+        <Transformation name ="EqualityExpression"
+            transform ="Nester.CodeInterface.InstrumentationCall.CompareOperator(%original%, %serial%)"
+            label ="==, != operator" />
+    </TransformationGroup>
+    <TransformationGroup label ="&amp; operator">
+        <Transformation name ="AndOperator" 
+            transform = ', @"%original%",'
+            label ="&amp; operator"/>
+        <Transformation name ="AndExpression"
+            transform ="Nester.CodeInterface.InstrumentationCall.BinaryOperator(%original%, %serial%)"
+            label ="&amp; operator" />
+    </TransformationGroup>
+    <TransformationGroup label ="| operator">
+        <Transformation name ="InclusiveOrOperator" 
+            transform = ', @"%original%",'
+            label ="| operator"/>
+        <Transformation name ="InclusiveOrExpression"
+            transform ="Nester.CodeInterface.InstrumentationCall.BinaryOperator(%original%, %serial%)"
+            label ="| operator" />
+    </TransformationGroup>
+    <TransformationGroup label ="^ operator">
+        <Transformation name ="ExclusiveOrOperator" 
+            transform = ', @"%original%",'
+            label ="^ operator"/>
+        <Transformation name ="ExclusiveOrExpression"
+            transform ="Nester.CodeInterface.InstrumentationCall.BinaryOperator(%original%, %serial%)"
+            label ="^ operator" />
+    </TransformationGroup>
+    <TransformationGroup label ="&amp;&amp; operator">
+        <Transformation name ="ConditionalAndOperator" 
+            transform = ', "&amp;&amp;", %serial%) ?? Nester.CodeInterface.InstrumentationCall.ShortCircutSecondCall("&amp;&amp;", %serial%,'
+            label ="&amp;&amp; operator"/>
+        <Transformation name ="ConditionalAndExpression"
+            transform ="((Nester.CodeInterface.InstrumentationCall.ShortCircutFirstCall(%original%)).GetValue())"
+            label ="&amp;&amp; operator" />
+    </TransformationGroup>
+    <TransformationGroup label ="|| operator">
+        <Transformation name ="ConditionalOrOperator" 
+            transform = ', "||", %serial%) ?? Nester.CodeInterface.InstrumentationCall.ShortCircutSecondCall("||", %serial%,'
+            label ="|| operator"/>
+        <Transformation name ="ConditionalOrExpression"
+            transform ="((Nester.CodeInterface.InstrumentationCall.ShortCircutFirstCall(%original%)).GetValue())"
+            label ="|| operator" />
+    </TransformationGroup>
+</TransformationScript>

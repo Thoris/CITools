@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!--This file represents the results of running a test suite-->
+<test-results name="C:\Thoris\Projetos\build\dev\source\BolaoNet.Tests\bin\Release\BolaoNet.Tests.dll" total="0" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2017-08-20" time="21:17:14">
+  <environment nunit-version="2.6.3.13283" clr-version="2.0.50727.8794" os-version="Microsoft Windows NT 6.2.9200.0" platform="Win32NT" cwd="C:\Thoris\Projetos\BolaoNetGit\Tools\OpenCover" machine-name="DESKTOP-U09QHTO" user="thoris" user-domain="DESKTOP-U09QHTO" />
+  <culture-info current-culture="pt-BR" current-uiculture="pt-BR" />
+  <test-suite type="Assembly" name="C:\Thoris\Projetos\build\dev\source\BolaoNet.Tests\bin\Release\BolaoNet.Tests.dll" executed="True" result="Inconclusive" success="False" time="0.012" asserts="0" />
+</test-results>

@@ -1,0 +1,741 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<!DOCTYPE Grammar SYSTEM "Grammar.dtd">
+<!-- C# grammar for the Nester defect inserter.
+    By John Melville, MS, MD
+    This file follows the official C# grammar as closely as possible.
+    Only grammar inside a method or property is implemented so far
+-->
+<Grammar defaultrule ="TopLevel">
+    <!-- this searches for methods and properties it is the top level production and is a little bit ad hoc -->
+    <Or name ="TopLevel">
+        <Ref rule ="MethodDecl"/>
+        <Ref rule ="PropertyDecl"/>
+    </Or>
+	
+    <Sequence name ="MethodDecl">
+		<Or>
+			<Sequence>
+				<Or optional ="true"> 
+					<Ref rule ="Type"/>
+					<Literal pattern ="void"/>
+				</Or>
+				<Ref rule ="Identifier"/>
+			</Sequence>
+			<Ref rule ="Identifier"/>
+		</Or>
+        <Ref rule ="TypeParameterList" optional ="true"/>
+        <Literal pattern ="("/>
+		<Ref rule ="MethodParamList" optional ="true"/>
+        <Literal pattern=")"/>
+        <Sequence name ="ConstructorCall" optional="true">
+            <Literal pattern =":"/>
+            <Or>
+                <Literal pattern="this"/>
+                <Literal pattern ="base"/>
+            </Or>
+            <Literal pattern="("/>
+            <Ref rule ="ArgumentList" optional="true"/>
+            <Literal pattern=")"/>
+        </Sequence>
+        <Ref rule ="Block" name ="MethodBlock"/>
+    </Sequence>
+    <List delimiter="," name ="MethodParamList">
+        <Sequence name ="MethodParam">
+            <Or optional="true">
+                <Literal pattern="params"/>
+                <Literal pattern="ref"/>
+                <Literal pattern="out"/>
+            </Or>
+            <Ref rule ="Type"/>
+            <Ref rule ="Identifier"/>
+        </Sequence>
+    </List>
+    
+    <Sequence name = "PropertyDecl">
+        <Ref rule ="Type"/>
+		<List delimiter =".">
+			<Or>
+				<Ref rule ="Identifier"/>
+				<Literal pattern ="this"/>
+			</Or>
+		</List>
+		<Sequence optional = "true">
+			<Literal pattern ="["/>
+			<Ref rule ="MethodParamList" optional ="true"/>
+			<Literal pattern ="]"/>
+		</Sequence>
+        <Literal pattern ="{"/>
+        <List>
+            <Or>
+                <Sequence>
+                    <Literal pattern ="get"/>
+                    <Ref rule="Block" name ="GetBlock"/>
+                </Sequence>
+                <Sequence>
+                    <Literal pattern ="set"/>
+                    <Ref rule="Block" name ="SetBlock"/>
+                </Sequence>
+            </Or>
+        </List>
+        <Literal pattern ="}"/>
+    </Sequence>
+    
+    <!-- Starting at section 9.2 of the csharp grammar-->
+    <Or name ="Statement">
+        <Ref rule = "Block"/>
+        <Literal pattern =";" name ="EmptyStatement"/>
+        <Ref rule ="LabelStatement"/>
+        <Ref rule ="LocalVariableDeclarationStatement"/>
+        <Ref rule ="IfStatement"/>
+        <Ref rule ="SwitchStatement"/>
+        <Ref rule ="WhileStatement"/>
+        <Ref rule ="DoStatement"/>
+        <Ref rule = "ForStatement"/>
+        <Ref rule = "ForeachStatement"/>
+        <Ref rule ="JumpStatements"/>
+        <Ref rule ="TryStatement"/>
+        <Ref rule ="CheckedStatement"/>
+        <Ref rule ="UncheckedStatement"/>
+        <Ref rule ="LockStatement"/>
+        <Ref rule ="UsingStatement"/>
+        <Ref rule ="UnsafeStatement"/>
+        <Ref rule ="FixedStatement"/>
+        <Sequence name ="ExpressionStatement"><Ref rule ="Expression"/><Literal pattern=";"/></Sequence>
+    </Or>
+    
+    <Or name ="JumpStatements">
+        <Sequence name ="BreakStatement"><Literal pattern ="break"/><Literal pattern =";"/></Sequence>
+        <Sequence name ="ContinueStatement"><Literal pattern ="continue"/><Literal pattern =";"/></Sequence>
+        <Ref rule ="GotoStatement"/>
+        <Ref rule ="ReturnStatement"/>
+        <Ref rule ="YieldStatement"/>
+        <Ref rule ="ThrowStatement"/>        
+    </Or>
+    
+    
+    <Sequence name ="Block">
+        <Literal pattern="{"/>
+        <List name ="BlockMemberList" optional ="true">
+            <Ref name ="BlockMember" rule ="Statement"/>
+        </List>
+        <Literal pattern ="}"/>
+    </Sequence>
+  
+    <Sequence name ="LabelStatement">
+        <Ref rule ="Identifier" name ="Label"/>
+        <Literal pattern =":"/>
+        <Ref rule ="Statement" name="LabeledStatement"/>
+    </Sequence>
+    
+    <Sequence name ="LocalVariableDeclarationStatement">
+        <Ref rule ="LocalVariableDeclaration"/>
+        <Literal pattern =";"/>
+    </Sequence>
+    
+    <Sequence name="LocalVariableDeclaration">
+        <Literal pattern ="const" optional ="true" name ="ConstToken"/>
+        <Ref rule ="Type" name ="LocalVariableDeclType"/>
+        <List delimiter ="," name ="LocalVariableDeclaratorList">
+            <Sequence name ="LocalVariableDeclarator">
+                <Ref rule ="Identifier" name ="DeclLocalVariable"/>
+                <Sequence  optional ="true">
+                    <Literal pattern = "="/>
+                    <Ref rule ="LocalVariableInitalizer"/>
+                </Sequence>
+            </Sequence>
+        </List>
+    </Sequence>
+
+    <Or name ="LocalVariableInitalizer">
+        <Literal pattern="null"/> <!-- included so that the coverage analyzer doesn't mutate type x = null-->
+        <Ref name="InitalizeExpression" rule ="Expression"/>
+        <Ref name="InitalizeExpression" rule ="ArrayInitalizer"/>
+        <Ref rule ="StackAllocInitalizer"/>
+    </Or>
+    
+    <Sequence name="StackAllocInitalizer">
+        <Literal pattern ="stackalloc"/>
+        <Ref rule ="Type" name ="StackAllocType"/>
+        <Literal pattern ="["/>
+        <Ref rule ="Expression" name ="StackAllocExpression"/>
+        <Literal pattern ="]"/>
+    </Sequence>
+        
+    <Sequence name ="IfStatement">
+        <Literal pattern ="if"/>
+        <Literal pattern ="("/>
+        <Ref rule ="Expression" name ="IfCondition"/>
+        <Literal pattern =")"/>
+        <Ref rule ="Statement" name ="IfTrueBranch"/>
+        <Sequence name ="ElseBlock" optional ="true">
+            <Literal pattern ="else"/>
+            <Ref rule ="Statement" name ="IfElseBranch"/>
+        </Sequence>
+    </Sequence>
+    
+    <Sequence name ="SwitchStatement">
+        <Literal pattern ="switch"/>
+        <Literal pattern ="("/>
+        <Ref rule ="Expression" name ="SwitchExpression"/>
+        <Literal pattern =")"/>
+        <Literal pattern ="{"/>
+        <List optional ="true">
+            <Sequence>
+                <Or>
+                    <Literal pattern="default"/>
+                    <Sequence>
+                        <Literal pattern ="case"/> 
+                        <Ref rule ="Expression" name ="CaseExpression" supressed="true"/>
+                    </Sequence>
+                </Or>
+                <Literal pattern =":"/>
+                <List optional = "true" name ="CaseStatementList">
+                    <Ref rule ="Statement" name ="CaseStatement"/>
+                </List>
+            </Sequence>
+        </List>
+        <Literal pattern ="}"/>
+    </Sequence>
+    
+    <Sequence name="WhileStatement">
+        <Literal pattern ="while"/>
+        <Literal pattern ="("/>
+        <Ref rule ="Expression" name ="WhileCondition"/>
+        <Literal pattern =")"/>
+        <Ref rule="Statement" name ="WhileLoopStatement"/>
+    </Sequence>
+    
+    <Sequence name="DoStatement">
+        <Literal pattern ="do"/>
+        <Ref rule="Statement" name ="DoLoopStatement"/>
+        <Literal pattern ="while"/>
+        <Literal pattern ="("/>
+        <Ref rule ="Expression" name ="DoCondition"/>
+        <Literal pattern =")"/>
+        <Literal pattern =";"/>
+    </Sequence>
+    
+    <Sequence name ="ForStatement">
+        <Literal pattern ="for"/>
+        <Literal pattern ="("/>
+        <List delimiter ="," optional ="true">
+		  <Or name ="ForInitalizer">
+	          <Ref rule ="Expression"/>
+			  <Ref rule ="LocalVariableDeclaration"/>
+		  </Or>
+        </List>
+        <Literal pattern=";"/>
+        <Ref name ="ForCondition" rule ="Expression" optional ="true"/>
+        <Literal pattern=";"/>
+        <Ref name="ForIterator" rule ="Expression" optional ="true"/>
+        <Literal pattern =")"/>
+        <Ref name ="ForLoopStatement" rule ="Block"/>
+    </Sequence>
+    
+    <Sequence name ="ForeachStatement">
+        <Literal pattern ="foreach"/>
+        <Literal pattern ="("/>
+        <Ref rule ="Type" name ="ForeachElementType"/>
+        <Ref rule ="Identifier" name="ForeachElement"/>
+        <Literal pattern ="in"/>
+        <Ref rule="Expression" name ="ForeachCollection"/>
+        <Literal pattern =")"/>
+        <Ref rule ="Statement" name ="ForeachLoopStatement"/>
+    </Sequence>
+    
+    <Sequence name = "GotoStatement">
+        <Literal pattern ="goto"/>
+        <Or>
+          <Ref rule ="Identifier" name ="GotoLabel"/>
+          <Sequence><Literal pattern ="case"/><Ref rule ="Expression" name ="GotoCaseExpression"/></Sequence>
+          <Literal pattern ="default"/>
+        </Or>
+        <Literal pattern =";"/>
+    </Sequence>
+    
+    <Sequence name ="ReturnStatement">
+        <Literal pattern ="return"/>
+        <Ref rule ="Expression" name ="ReturnedValue" optional ="true"/>
+        <Literal pattern =";"/>
+    </Sequence>
+    <Sequence name ="YieldStatement">
+        <Literal pattern="yield"/>
+        <Or>
+            <Sequence>
+                <Literal pattern="return"/>
+                <Ref rule="Expression" name="YieldedValue"/>
+            </Sequence>
+            <Literal pattern="break"/>
+        </Or>
+        <Literal pattern=";"/>
+    </Sequence>
+    <Sequence name ="ThrowStatement">
+        <Literal pattern ="throw"/>
+        <Ref rule ="Expression" name ="ThrownValue" optional ="true"/>
+        <Literal pattern =";"/>
+    </Sequence>
+    
+    <Sequence name ="TryStatement">
+        <Literal pattern ="try"/>
+        <Ref rule ="Block" name ="TryProtectedBlock"/>
+        <List>
+            <Or>
+                <Sequence>
+                    <Literal pattern="catch"/>
+                    <Sequence optional ="true">
+                        <Literal pattern ="("/>
+                        <Ref rule ="Type" name="CatchExceptionType"/>
+                        <Ref rule ="Identifier" name="CatchExceptionVariable" optional ="true"/>
+                        <Literal pattern=")"/>
+                    </Sequence>
+                   <Ref rule ="Block" name ="CatchBlock"/>
+                </Sequence>
+                <Sequence>
+                    <Literal pattern ="finally"/>
+                    <Ref rule="Block" name ="FinallyBlock"/>
+                </Sequence>
+            </Or>
+        </List>
+    </Sequence>
+    
+    <Sequence name ="CheckedStatement">
+        <Literal pattern ="checked"/>
+        <Ref rule ="Block" name ="CheckedBlock"/>
+    </Sequence>
+
+    <Sequence name ="UncheckedStatement">
+        <Literal pattern ="unchecked"/>
+        <Ref rule ="Block" name ="UncheckedBlock"/>
+    </Sequence>
+    
+    <Sequence name ="LockStatement">
+        <Literal pattern ="lock"/>
+        <Literal pattern ="("/>
+        <Ref rule="Expression" name ="LockedExpression"/>
+        <Literal pattern =")"/>
+        <Ref rule ="Block" name="LockedBlock"/>
+    </Sequence>
+    
+    <Sequence name ="UsingStatement">
+        <Literal pattern ="using"/>
+        <Literal pattern ="("/>
+        <Or name ="UsingExpression">
+          <Ref rule="LocalVariableDeclaration"/>
+          <Ref rule="Expression"/>
+        </Or>
+        <Literal pattern =")"/>
+        <Ref rule ="Block" name="UsingBlock"/>
+    </Sequence>
+    
+    <Sequence name ="UnsafeStatement">
+        <Literal pattern ="unsafe"/>
+        <Ref rule="block" name ="UnsafeBlock"/>
+    </Sequence>
+    
+    <Sequence name ="FixedStatement">
+        <Literal pattern ="fixed"/>
+        <Literal pattern ="("/>
+        <Ref rule ="Type" name ="FixedType"/>
+        <List delimiter =",">
+            <Sequence>
+                <Ref rule ="Identifier" name ="FixedIdentifier"/>
+                <Literal pattern ="="/>
+                <Ref rule ="Expression" name="FixedExpression"/>
+            </Sequence>
+        </List>
+        <Literal pattern =")"/>
+        <Ref rule ="Statement"/>
+    </Sequence>
+    
+    <!-- expressions, starting at section b 2.4 in the 1.1 grammar-->
+    <List delimiter ="," name ="ArgumentList">
+       <Sequence>
+           <Or optional ="true">
+               <Literal pattern ="ref"/>
+               <Literal pattern ="out"/>
+           </Or>
+           <Ref rule ="Expression" name="Argument" />
+       </Sequence>
+    </List>
+    
+    <Or name="PrimaryExpression">
+        <Ref rule="PrimaryNoArrayCreationExpression" />
+        <Ref rule="ArrayCreationExpression"/>
+    </Or>
+    
+    <Sequence name = "PrimaryNoArrayCreationExpression">
+        <Or>
+            <Ref rule="CastExpression"/>
+            <Ref rule ="ParenthesizedExpression"/>
+            <Ref rule ="Literal"/>
+            <Ref rule ="TypeMemberAccess"/> 
+            <Ref rule ="Identifier"/>
+            <Literal name ="This" pattern ="this"/>
+            <Ref rule ="BaseAccess"/>
+            <Ref rule ="ObjectCreationExpression"/>
+            <Ref rule ="TypeOfExpression"/>
+            <Ref rule ="CheckedExpression"/>
+            <Ref rule ="UncheckedExpression"/>
+            <Ref rule ="AnonymousMethodExpression"/>
+        </Or>
+        <List name ="ExpressionSuffix" optional ="true">
+            <Or>
+              <Ref rule ="MemberAccess"/> 
+              <Ref rule="BracketedExpressionList"/>
+              <Ref rule ="InvocationList"/>
+              <Ref rule ="PostIncrement"/>
+              <Ref rule ="PostDecrement"/>
+              <Ref rule ="PointerElementAccess"/>
+              <Ref rule ="ExpressionTypeParameterList"/>
+            </Or>
+        </List>
+    </Sequence>
+    <Sequence name ="AnonymousMethodExpression">
+        <Literal pattern="delegate"/>
+        <Sequence optional ="true">
+            <Literal pattern ="("/>
+		    <Ref rule ="MethodParamList" optional ="true"/>
+            <Literal pattern=")"/>
+        </Sequence>
+        <Ref rule ="Block" name ="MethodBlock"/>
+    </Sequence>
+
+    <Sequence name ="PointerElementAccess">
+        <Sequence nospace="true">
+            <Literal pattern ="-"/>
+            <Literal pattern =">"/>
+        </Sequence>
+        <Ref rule ="Identifier"/>
+    </Sequence>
+    <Sequence name ="UncheckedExpression">
+        <Literal pattern ="unchecked"/>
+        <Literal pattern ="("/>
+        <Ref rule ="Expression"/>
+        <Literal pattern =")"/>
+    </Sequence>
+    <Sequence name ="CheckedExpression">
+        <Literal pattern ="checked"/>
+        <Literal pattern ="("/>
+        <Ref rule ="Expression"/>
+        <Literal pattern =")"/>
+    </Sequence>
+    <Sequence name ="TypeOfExpression">
+        <Literal pattern ="typeof"/>
+        <Literal pattern ="("/>
+        <Or>
+            <Ref rule="Type"/>
+            <Literal pattern ="void"/>
+        </Or>
+        <Literal pattern =")"/>
+    </Sequence>
+    <Sequence name ="ObjectCreationExpression">
+      <Literal pattern ="new"/>
+      <Ref rule ="Type"/> 
+      <Ref rule ="InvocationList"/>
+    </Sequence>
+    <Sequence name ="PostIncrement" nospace="true">
+        <Literal pattern ="+"/>
+        <Literal pattern ="+"/>
+    </Sequence>
+    <Sequence name ="PostDecrement" nospace ="true">
+        <Literal pattern ="-"/>
+        <Literal pattern ="-"/>
+    </Sequence>
+    <Sequence name ="BaseAccess">
+        <Literal pattern ="base"/>
+        <Or>
+            <Ref rule ="MemberAccess"/>
+            <Ref rule ="BracketedExpressionList"/>
+        </Or>
+    </Sequence>
+    <Sequence name ="BracketedExpressionList">
+        <Literal pattern ="["/>
+        <Ref rule ="ArgumentList" optional ="true"/>
+        <Literal pattern ="]"/>        
+    </Sequence>
+    <Sequence name ="InvocationList">
+        <Literal pattern ="("/>
+        <Ref rule ="ArgumentList" optional ="true"/>
+        <Literal pattern =")"/>
+    </Sequence>
+    <Sequence name ="TypeMemberAccess"><!-- types can be expressions for Member access only after the first Expression Takes care of the rest-->
+        <Ref rule ="Identifier" kill ="true"/>
+        <Ref rule ="SimpleType"/>
+      <Literal pattern="."/>
+      <Ref rule="Identifier"/>
+    </Sequence>
+    <Sequence name ="MemberAccess"> <!-- aslo used for expressions-->
+        <Literal pattern ="."/>
+        <Ref rule="Identifier" name="MemberAccessMember"/>
+    </Sequence>
+    <Sequence name ="ParenthesizedExpression">
+        <Literal pattern ="("/>
+        <Ref rule ="Expression"/>
+        <Literal pattern =")"/>
+    </Sequence>
+    <Or name ="Literal">
+        <NumberConstant name ="NumberLiteral"/>
+        <BooleanConstant name ="BooleanLiteral"/>
+        <StringConstant name ="StringLiteral"/>
+        <CharConstant name ="CharLiteral"/>
+        <Literal pattern ="null"/>
+    </Or>
+    
+    <Or name ="UnaryExpression">
+        <Ref rule="PrimaryExpression"/>
+        <Sequence name ="SizeOfExpression">
+            <Literal pattern ="sizeof"/>
+            <Literal pattern ="("/>
+            <Ref rule ="Type"/>
+            <Literal pattern =")"/>
+        </Sequence>
+        <Sequence name ="UnaryExpression">
+            <Or>
+                <Literal pattern ="+"/>
+                <Literal pattern ="-"/>
+                <Literal pattern ="!"/>
+                <Literal pattern ="~"/>
+                <Sequence nospace ="true">
+                    <Literal pattern ="+"/>
+                    <Literal pattern ="+"/>
+                </Sequence>
+                <Sequence nospace ="true">
+                    <Literal pattern ="-"/>
+                    <Literal pattern ="-"/>
+                </Sequence>
+                <Sequence>
+                    <Literal pattern ="("/>
+                    <Ref rule ="Type"/>
+                    <Literal pattern =")"/>
+                </Sequence>
+                <Literal pattern ="*"/>
+                <Literal pattern ="&amp;"/>
+            </Or>
+            <Ref rule ="UnaryExpression"/>
+        </Sequence>
+    </Or>
+    <Sequence name="CastExpression">
+        <Literal pattern ="("/>
+        <Ref rule="Type"/>
+        <Literal pattern=")"/>
+        <Ref rule="UnaryExpression"/>
+    </Sequence>
+    <!-- Notice the associativity is now fixed to match the official grammar.-->
+    <BinaryOperator name ="MultiplicativeExpression">
+        <Ref rule ="UnaryExpression"/>
+        <Or name="MultiplicativeOperator">
+            <Literal pattern ="*"/>
+            <Literal pattern ="/"/>
+            <Literal pattern ="%"/>
+        </Or>
+    </BinaryOperator>
+    <BinaryOperator name ="AddativeExpression">
+        <Ref rule ="MultiplicativeExpression"/>
+        <Or name ="AddativeOperator">
+            <Literal pattern ="+"/>
+            <Literal pattern ="-"/>
+        </Or>
+    </BinaryOperator>
+    <BinaryOperator name ="ShiftExpression">
+        <Ref rule ="AddativeExpression"/>
+        <Or name="ShiftOperator">
+            <Sequence nospace ="true"><Literal pattern =">"/><Literal pattern =">"/></Sequence>
+            <Sequence nospace ="true"><Literal pattern ="&lt;"/><Literal pattern ="&lt;"/></Sequence>
+        </Or>
+    </BinaryOperator>
+    <Or name ="RelationalSuperExpression">
+        <Sequence name ="TypeRelationalExpression">
+            <Ref rule ="ShiftExpression"/>
+            <Or name ="TypeRelationalOperator">
+                <Literal pattern ="is"/>
+                <Literal pattern ="as"/>
+            </Or>
+            <Ref rule="Type"/>
+        </Sequence>
+        <BinaryOperator name ="RelationalExpression">
+            <Ref rule ="ShiftExpression"/>
+            <Or name="RelationalOperator">
+                <Sequence nospace ="true"><Literal pattern =">"/><Literal pattern ="="/></Sequence>
+                <Sequence nospace ="true"><Literal pattern ="&lt;"/><Literal pattern ="="/></Sequence>
+                <Literal pattern =">"/>
+                <Literal pattern ="&lt;"/>
+            </Or>
+        </BinaryOperator>
+    </Or>
+    <!-- rechecked the spec, relationalexpression and equalityexpression are separate-->
+    <BinaryOperator name ="EqualityExpression">
+        <Ref rule ="RelationalSuperExpression"/>
+        <Or name ="EqualityOperator">
+            <Sequence nospace ="true"><Literal pattern ="="/><Literal pattern ="="/></Sequence>
+            <Sequence nospace ="true"><Literal pattern ="!"/><Literal pattern ="="/></Sequence>
+        </Or>
+    </BinaryOperator>    
+    <BinaryOperator name ="AndExpression">
+        <Ref rule ="EqualityExpression"/>
+        <Sequence nospace="true">
+            <Literal name ="AndOperator" pattern ="&amp;"/>
+            <!-- We need to not eat double amperstands without a space-->
+            <Literal kill="true" pattern="&amp;"/>
+        </Sequence>
+    </BinaryOperator>    
+    <BinaryOperator name ="ExclusiveOrExpression">
+        <Ref rule ="AndExpression"/>
+        <Literal name ="ExclusiveOrOperator" pattern ="^"/>
+    </BinaryOperator>    
+    <BinaryOperator name ="InclusiveOrExpression">
+        <Ref rule ="ExclusiveOrExpression"/>
+       <Literal name ="InclusiveOrOperator" pattern ="|"/>
+    </BinaryOperator>    
+    <BinaryOperator name ="ConditionalAndExpression">
+        <Ref rule ="InclusiveOrExpression"/>
+        <Sequence name ="ConditionalAndOperator" nospace="true"><Literal pattern ="&amp;"/><Literal pattern ="&amp;"/></Sequence>
+    </BinaryOperator>    
+    <BinaryOperator name ="ConditionalOrExpression">
+        <Ref rule ="ConditionalAndExpression"/>
+        <Sequence name ="ConditionalOrOperator"  nospace="true"><Literal pattern ="|"/><Literal pattern ="|"/></Sequence>
+    </BinaryOperator>   
+    <BinaryOperator name="NullCoalescingExpression">
+        <Ref rule ="ConditionalOrExpression"/>
+        <Sequence name="NullCoalescingOperator" nospace="true">
+            <Literal pattern="?"/>
+            <Literal pattern="?"/>
+        </Sequence>
+    </BinaryOperator>
+    <Or name ="ConditionalExpression">
+        <Sequence>
+            <Ref rule ="NullCoalescingExpression"/>
+            <Literal pattern ="?"/>
+            <Ref rule="Expression"/>
+            <Literal pattern =":"/>
+            <Ref rule="Expression"/>
+        </Sequence>  
+        <Ref rule ="NullCoalescingExpression"/>
+    </Or>
+    <Sequence name ="Assignment">
+        <Ref rule ="UnaryExpression"/>
+        <Sequence nospace="true">
+            <Or optional ="true">
+              <Literal pattern ="+"/>
+              <Literal pattern ="-"/>
+              <Literal pattern ="*"/>
+              <Literal pattern ="/"/>
+              <Literal pattern ="%"/>
+              <Literal pattern ="&amp;"/>
+              <Literal pattern ="|"/>
+              <Literal pattern ="^"/>
+              <Sequence nospace ="true"><Literal pattern ="&lt;"/><Literal pattern ="&lt;"/></Sequence>
+              <Sequence nospace ="true"><Literal pattern =">"/><Literal pattern =">"/></Sequence>
+            </Or>
+            <Literal pattern ="="/>
+        </Sequence>
+        <Ref rule ="Expression"/>
+    </Sequence>
+
+    <Or name ="Expression">
+        <Ref rule ="Assignment"/>
+        <Ref rule ="ConditionalExpression"/>
+    </Or>
+    
+    <!-- Types -->
+    <List name ="Type" delimiter=".">
+        <Ref rule="SimpleType"/>
+     </List>
+    <Sequence name ="SimpleType">
+        <Ref rule ="BasicType"/>
+        <List optional ="true">
+            <Or>
+                <Ref rule ="RankSpecifiers" optional ="true"/>
+                <Literal name ="PointerDecl" pattern="*"/>
+                <Literal name ="NullableDecl" pattern="?"/>
+                <Ref rule = "TypeParameterList"/>
+            </Or>
+        </List>
+    </Sequence>
+    
+    <List name="RankSpecifiers">
+        <Sequence>
+            <Literal pattern ="["/>
+            <List optional ="true"> <Literal pattern =","/></List>
+            <Literal pattern ="]"/>
+        </Sequence>
+    </List>
+    <Or name ="BasicType">
+        <Literal pattern ="bool"/>
+        <Literal pattern ="byte"/>
+        <Literal pattern ="char"/>
+        <Literal pattern ="decimal"/>
+        <Literal pattern ="double"/>
+        <Literal pattern ="float"/>
+        <Literal pattern ="int"/>
+        <Literal pattern ="long"/>
+        <Literal pattern ="object"/>
+        <Literal pattern ="sbyte"/>
+        <Literal pattern ="short"/>
+        <Literal pattern ="string"/>
+        <Literal pattern ="uint"/>
+        <Literal pattern ="ulong"/>
+        <Literal pattern ="ushort"/>
+        <Ref rule ="Identifier"/>
+    </Or>
+    <!-- Arrays-->
+	<!-- The original grammar has one array creation expression with an optional initalizer,  
+	    I separated it specifically because I need to know if the array is initalized to blank out the
+		constant array size parameters -->
+   <Sequence name ="ArrayCreationExpression">
+	   <Literal pattern ="new"/>
+       <Ref rule ="Type"/>
+	   <Or>
+		   <Sequence>
+				<Sequence name ="DeletableArrayDimensionList" optional ="true">
+					<Literal pattern ="["/>
+					<List name ="DeleteableExpressionList" delimiter =",">
+					  <Ref rule ="Expression" name ="DeleteableArrayDimension" supressed="true"/>
+					</List>
+					<Literal pattern ="]"/>
+				</Sequence>
+				<Ref rule ="RankSpecifiers" optional ="true"/>
+				<Ref rule ="ArrayInitalizer"/>
+		   </Sequence>
+		   <Sequence>
+				<Ref rule ="BracketedExpressionList"/>
+				<Ref rule ="RankSpecifiers" optional ="true"/>
+		   </Sequence>		   
+	   </Or>	   
+   </Sequence> 
+   <Sequence name ="ArrayInitalizer">
+       <Literal pattern ="{"/>
+       <List delimiter=",">
+           <Or>
+               <Ref rule ="Expression" name ="ArrayInitalizerTerminal"/>
+               <Ref rule ="ArrayInitalizer"/>
+           </Or>
+       </List>
+       <Literal pattern ="}"/>
+   </Sequence>
+    
+    <!-- Generic types-->
+    <Sequence name ="TypeParameterList">
+       <Literal pattern = "&lt;"/>
+        <List delimiter =",">
+            <Ref rule ="type"/>
+        </List>
+        <Literal pattern = ">"/>  
+    </Sequence>
+    <Sequence name ="ExpressionTypeParameterList">
+        <Ref rule ="TypeParameterList"/>
+        <Or peek="true">
+            <Literal pattern ="("/>
+            <Literal pattern =")"/>
+            <Literal pattern ="]"/> 
+            <Literal pattern =":"/>
+            <Literal pattern =";"/>
+            <Literal pattern =","/>
+            <Literal pattern ="."/>
+            <Literal pattern ="?"/>
+            <Sequence nospace ="true"><Literal pattern ="="/><Literal pattern ="="/></Sequence> 
+            <Sequence nospace ="true"><Literal pattern ="!"/><Literal pattern ="="/></Sequence> 
+        </Or>        
+    </Sequence>
+     <!-- unfinished productions that are used above--> 
+    <Id name ="Identifier" excluded ="abstract as base bool break byte case catch char checked class const continue decimal default delegate do double else enum event explicit extern false finally fixed float for foreach goto if implicit in int interface internal is lock long namespace new null object operator out override params private protected public readonly ref return sbyte sealed short sizeof stackalloc static string struct switch this throw true try typeof uint ulong unchecked unsafe ushort using virtual void volatile while"/>
+</Grammar>
